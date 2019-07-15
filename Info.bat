@@ -19,8 +19,7 @@ set totalMem=
 set availableMem=
 set usedMem=
 
-echo Getting data [Computer: %computername%]...
-echo Please Wait....
+echo [Computer: %computername%]
 
 REM Get Computer Name
 FOR /F "tokens=2 delims='='" %%A in ('wmic OS Get csname /value') do SET system=%%A
@@ -41,13 +40,16 @@ FOR /F "tokens=1 delims='|'" %%A in ("%osname%") do SET osname=%%A
 REM Get Computer OS SP
 FOR /F "tokens=2 delims='='" %%A in ('wmic os get ServicePackMajorVersion /value') do SET sp=%%A
 
-REM Get Computer Mac
-FOR /F "tokens=2 delims='='" %%A in ('wmic nic get macaddress /value') do SET mac=%%A
+REM Get Computer IP
+
 
 REM Get Computer Mac
-FOR /F "tokens=2 delims='='" %%A in ('wmic nic get macaddress ^|find ":" /value') do SET mac2=%%
+set qry=where "ipenabled=true"
+set params=ipaddress^^,macaddress
+FOR /F "usebackq skip=2 tokens=1-4 delims=," %%a in (
+  `wmic nicconfig %qry% get %params% /format:csv ^<nul^|find /v "0.0.0.0"`
+    ) do set mac=%%c 
 
-echo done!
 
 echo --------------------------------------------
 echo System Name: %system%
@@ -57,12 +59,11 @@ echo Serial Number: %serialnumber%
 echo Operating System: %osname%
 echo Service Pack: %sp%
 echo Mac Address: %mac%
-echo Mac Address: %mac2%
 
 echo --------------------------------------------
 
 REM Generate file
-SET file="%~dp0%computername%.txt"
+SET file="INVENTORY.txt"
 echo -------------------------------------------- >> %file%
 echo Details For: %system% >> %file%
 echo Manufacturer: %manufacturer% >> %file%
@@ -72,7 +73,6 @@ echo Operating System: %osname% >> %file%
 echo Computer Processor: %processor_architecture% >> %file%
 echo Service Pack: %sp% >> %file%
 echo Mac Address: %mac% >> %file%
-echo Mac Address: %mac2% >> %file%
 echo -------------------------------------------- >> %file%
 
 REM request user to push any key to continue
