@@ -13,10 +13,15 @@ set owner=
 set user=
 set ad=
 set sophos=
+set build=
 setlocal ENABLEDELAYEDEXPANSION
 set "volume=C:"
 
 echo [Computer: %computername%]
+
+REM Get Building
+set /p build=Enter Building i.e "ESB, AER, ERB, ect...":
+
 REM Get Room Number
 set /p room=Enter Room NUMBER: 
 
@@ -69,6 +74,7 @@ FOR /F "usebackq skip=2 tokens=1-4 delims=," %%a in (
     ) do set mac=%%c 
 
 echo --------------------------------------------
+echo Building: %build%
 echo Room Number: %room%
 echo Department: %dep%
 echo Device Type: %device%
@@ -87,8 +93,8 @@ echo --------------------------------------------
 
 REM Generate file
 SET file="%computername%.csv"
-echo "Room Number", "Department", "Device Type", "Computer Name", "Manufacturer", "Model", "Service-Tag", "Operating System", "IP Address", "Mac Address", "Device Owner", "Device User", "AD", "Sophos" >> %file%
-echo %room:,=%, %dep:,=%, %device:,=%, %system%, %manufacturer:,=%, %model%, %serialnumber%, %osname%, %ip:{=%, %mac%, %owner:,=%, %user:,=%, %ad:,=%, %sophos% >> %file%
+echo "Building", "Room Number", "Department", "Device Type", "Computer Name", "Manufacturer", "Model", "Service-Tag", "Operating System", "IP Address", "Mac Address", "Device Owner", "Device User", "AD", "Sophos" >> %file%
+echo %build:,=%, %room:,=%, %dep:,=%, %device:,=%, %system%, %manufacturer:,=%, %model%, %serialnumber%, %osname%, %ip:{=%, %mac%, %owner:,=%, %user:,=%, %ad:,=%, %sophos% >> %file%
 
 
 
