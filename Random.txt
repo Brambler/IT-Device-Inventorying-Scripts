@@ -1,0 +1,25 @@
+Get-WmiObject Win32_NetworkAdapterConfiguration
+
+for /f "usebackq tokens=3 delims=," %a in (`getmac /fo csv /v ^| find "Local Area Connection"`) do set MAC=%~a
+
+
+WORKING SORTVE
+FOR /F "tokens=2 delims='='" %%A in ('wmic nic get MACAddress /value') do SET mac=%%A
+
+https://www.dostips.com/forum/viewtopic.php?p=48394#p48394
+
+https://social.technet.microsoft.com/Forums/scriptcenter/en-US/450dca77-f1e9-4c39-9597-f500300af4d4/logon-batch-script-for-mac-addresses?forum=ITCG
+
+
+echo "Computer Name"~ %system%~ "Manufacturer"~ %manufacturer%~ "Model"~ %model%~ "Service-Tag"~ "Operating System"~ "Service Pack"~ "IP Address"~ "Mac Address" >> %file%
+
+echo "Computer Name", %system%, "Manufacturer", %manufacturer%, "Model", %model%, "Service-Tag", %serialnumber%, "Operating System", %osname%, "Service Pack", %sp%, "IP Address", %ip:{=%, "Mac Address", %mac% >> %file%
+
+echo "Computer Name", %system% >> %file%
+echo "Manufacturer", %manufacturer% >> %file%
+echo "Model", %model% >> %file%
+echo "Service-Tag", %serialnumber% >> %file%
+echo "Operating System", %osname% >> %file%
+echo "Service Pack", %sp% >> %file%
+echo "IP Address", %ip:{=% >> %file%
+echo "Mac Address", %mac% >> %file%
