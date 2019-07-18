@@ -1,5 +1,7 @@
 @echo off
 
+IF NOT EXIST "\Inventory\DATA\" mkdir \Inventory\DATA\
+
 REM set variables
 set system=
 set manufacturer=
@@ -14,6 +16,7 @@ set user=
 set ad=
 set sophos=
 set build=
+set domain=
 setlocal ENABLEDELAYEDEXPANSION
 set "volume=C:"
 
@@ -38,10 +41,14 @@ REM Get User
 set /p user=Enter Device User (Who is using the device?): 
 
 REM Get AD INFO
-set /p ad=Is this device on AD? (Yes or No): 
+FOR /F "tokens=2 delims='='" %%A in ('wmic computersystem get domain /value') do SET domain=%%A
+IF "%domain%" == "wvu-ad.wvu.edu" SET ad=YES
+IF NOT "%domain%" == "wvu-ad.wvu.edu" SET ad=NO
 
 REM Get Sophos
-set /p sophos=Does this device have Sophos (Mark if it does or not if it has Kaspersky also note): 
+IF EXIST "C:\Program Files (x86)\Sophos" set sophos=YES
+IF NOT EXIST "C:\Program Files (x86)\Sophos" set sophos=NO
+IF EXIST "C:\Program Files (x86)\Kaspersky Lab" set sophos=KASPERSKY
 
 REM Get Computer Name
 FOR /F "tokens=2 delims='='" %%A in ('wmic OS Get csname /value') do SET system=%%A
@@ -73,28 +80,29 @@ FOR /F "usebackq skip=2 tokens=1-4 delims=," %%a in (
   `wmic nicconfig %qry% get %params% /format:csv ^<nul^|find /v "0.0.0.0"`
     ) do set mac=%%c 
 
-echo --------------------------------------------
+cls
+echo Computer Name: %system%
+echo Service-Tag: %serialnumber%
+echo IP Address: %ip:{=%
+echo Mac Address: %mac%
+echo:
+echo:
 echo Building: %build%
 echo Room Number: %room%
 echo Department: %dep%
 echo Device Type: %device%
-echo Computer Name: %system%
 echo Manufacturer: %manufacturer%
 echo Model: %model%
-echo Service-Tag: %serialnumber%
 echo Operating System: %osname%
-echo IP Address: %ip:{=%
-echo Mac Address: %mac%
 echo Device Owner: %owner%
 echo Device User: %user%
 echo Device on AD: %ad%
 echo Sophos installed: %sophos%
-echo --------------------------------------------
 
 REM Generate file
-SET file="%computername%.csv"
-echo "Building", "Room Number", "Department", "Device Type", "Computer Name", "Manufacturer", "Model", "Service-Tag", "Operating System", "IP Address", "Mac Address", "Device Owner", "Device User", "AD", "Sophos" >> %file%
-echo %build:,=%, %room:,=%, %dep:,=%, %device:,=%, %system%, %manufacturer:,=%, %model%, %serialnumber%, %osname%, %ip:{=%, %mac%, %owner:,=%, %user:,=%, %ad:,=%, %sophos% >> %file%
+SET file="\Inventory\DATA\%computername%.csv"
+echo "Building", "Room Number", "Department", "Device Type", "Computer Name", "Manufacturer", "Model", "Service-Tag", "Operating System", "IP Address", "Mac Address", "Device Owner", "Device User", "AD", "DOMAIN", "Sophos" >> %file%
+echo %build:,=%, %room:,=%, %dep:,=%, %device:,=%, %system%, %manufacturer:,=%, %model%, %serialnumber%, %osname%, %ip:{=%, %mac::=%, %owner:,=%, %user:,=%, %ad:,=%, %domain%, %sophos% >> %file%
 
 
 
