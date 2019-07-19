@@ -1,16 +1,9 @@
 @echo off
-
-ECHO Set working directory
 pushd %~dp0
-
-ECHO Deleting existing combined file
 del combined.csv
-
 setlocal ENABLEDELAYEDEXPANSION
-
 REM set count to 1
 set cnt=1
-
 REM for each file that matches *.csv
 for %%i in (*.csv) do (
 REM if count is 1 it's the first time running
