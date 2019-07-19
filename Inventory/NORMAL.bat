@@ -1,8 +1,9 @@
 @echo off
 
-IF NOT EXIST "\Inventory\DATA\" mkdir \Inventory\DATA\
-IF NOT EXIST "\Inventory\DATA\Combine_PC_INFO.cmd" copy "\Inventory\Combine_PC_INFO.cmd" "\Inventory\DATA\Combine_PC_INFO.cmd"
-IF EXIST "\Inventory\DATA\Combine_PC_INFO.cmd" del "\Inventory\Combine_PC_INFO.cmd"
+SET mypath=%~dp0
+IF NOT EXIST "%~dp0\DATA\" mkdir %~dp0\DATA\
+IF NOT EXIST "%~dp0\DATA\Combine_PC_INFO.cmd" copy "%~dp0Combine_PC_INFO.cmd" "%~dp0DATA\Combine_PC_INFO.cmd"
+IF EXIST "%~dp0DATA\Combine_PC_INFO.cmd" del "%~dp0Combine_PC_INFO.cmd"
 cls
 
 REM set variables
@@ -156,11 +157,11 @@ echo OC TAG: %oc%
 echo NETL/OTHER TAG: %netl%
 
 REM Generate file
-SET file="\Inventory\DATA\%computername%.csv"
+SET file="%~dp0\DATA\%computername%.csv"
 echo "Building", "Room Number", "Department", "Device Type", "Computer Name", "Manufacturer", "Model", "Service-Tag", "Operating System", "IP Address", "Mac Address", "Device Owner", "Device User", "AD", "DOMAIN", "Sophos", "netl", "oc">> %file%
 echo %build:,=%, %room:,=%, %dep:,=%, %device:,=%, %system%, %manufacturer:,=%, %model%, %serialnumber%, %osname%, %ip:{=%, %mac::=%, %owner:,=%, %user:,=%, %ad:,=%, %domain%, %sophos% , %netl%, %oc% >> %file%
 
-call \Inventory\DATA\Combine_PC_INFO.cmd
+call %~dp0\DATA\Combine_PC_INFO.cmd
 
 REM request user to push any key to continue
 pause
