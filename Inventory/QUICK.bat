@@ -1,6 +1,9 @@
 @echo off
 
 IF NOT EXIST "\Inventory\DATA\" mkdir \Inventory\DATA\
+IF NOT EXIST "\Inventory\DATA\Combine_PC_INFO.cmd" copy "\Inventory\Combine_PC_INFO.cmd" "\Inventory\DATA\Combine_PC_INFO.cmd"
+IF EXIST "\Inventory\DATA\Combine_PC_INFO.cmd" del "\Inventory\Combine_PC_INFO.cmd"
+cls
 
 REM set variables
 set system=
