@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to IT Device Inventorying Scripts 👋</h1>
+<h1 align="center">IT Device Inventorying Scripts 👋</h1>
 <p>
   <a href="https://github.com/kefranabg/readme-md-generator/graphs/commit-activity">
     <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" target="_blank" />
