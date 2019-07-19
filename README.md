@@ -18,7 +18,7 @@
 
 ## Install
 
-> Download the latest release here.
+> Download the latest release [here](https://github.com/Brambler/IT-Device-Inventorying-Scripts/releases/).
 > Copy the contents of the download and put on thumbdrive or local drive.
 
 
