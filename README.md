@@ -10,7 +10,7 @@
 
 > These scripts were used for taking device inventory during my time as an intern at WVU. These scripts were written by me and were used to make the job easier and faster.
 
-### 🏠 [Homepage](https://github.com/Brambler)
+### 🏠 [Homepage](https://github.com/Brambler/IT-Device-Inventorying-Scripts)
 
 ## Prerequisites
 
@@ -18,13 +18,15 @@
 
 ## Install
 
-> Download the latest release here.
+> Download the latest release [here](https://github.com/Brambler/IT-Device-Inventorying-Scripts/releases/).
 > Copy the contents of the download and put on thumbdrive or local drive.
 
 
 ## Usage
-> This script was used to inventory the machine, to identify what building/room/department/..etc. It also grabs the IP, Mac Address, Host Name. It also checks to see if the machine was on our AD system, as well if it had our Anti-Virus installed on the machine.
-  Along side of the information grab part of the project, it exports the data into CSV's for each machine and then combines the CSV's of the machines into one CSV file. This is in place for further down the road of if possible automation of submitting this information into the inventory forum that was used to log the machines.
+> This script was used to inventory the machine, to identify what building/room/department/..etc. 
+> - It also grabs the IP, Mac Address, Host Name. It also checks to see if the machine was on our AD system, as well if it had our Anti-Virus installed on the machine.
+> Along side of the information grab part of the project
+> - It exports the data into CSV's for each machine and then combines the CSV's of the machines into one CSV file. This is in place for further down the road of if possible automation of submitting this information into the inventory forum that was used to log the machines.
 
 ## Author
 👤 **Jordan &#34;Bramble&#34; Braham**
