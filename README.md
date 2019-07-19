@@ -1,7 +1,5 @@
-<h1 align="center">Welcome to IT Device Inventorying Scripts 👋</h1>
+<h1 align="center">IT Device Inventorying Scripts 👋</h1>
 <p>
-  <img src="https://img.shields.io/badge/npm-%3E%3D5.5.0-blue.svg" />
-  <img src="https://img.shields.io/badge/node-%3E%3D9.3.0-blue.svg" />
   <a href="https://github.com/kefranabg/readme-md-generator/graphs/commit-activity">
     <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" target="_blank" />
   </a>
@@ -10,41 +8,32 @@
   </a>
 </p>
 
-> These scripts were used for taking device inventory during my time as an intern. These scripts were written by me and were used to make the job easier and faster.
+> These scripts were used for taking device inventory during my time as an intern at WVU. These scripts were written by me and were used to make the job easier and faster.
 
 ### 🏠 [Homepage](https://github.com/Brambler)
 
 ## Prerequisites
 
-- npm >=5.5.0
-- node >=9.3.0
+- Windows 10
 
 ## Install
 
-```sh
-Run the .bat file
-```
+> Download the latest release here.
+> Copy the contents of the download and put on thumbdrive or local drive.
+
 
 ## Usage
-
-```sh
-If you run the script, it will prompt you for information.
-```
+> This script was used to inventory the machine, to identify what building/room/department/..etc. It also grabs the IP, Mac Address, Host Name. It also checks to see if the machine was on our AD system, as well if it had our Anti-Virus installed on the machine.
+  Along side of the information grab part of the project, it exports the data into CSV's for each machine and then combines the CSV's of the machines into one CSV file. This is in place for further down the road of if possible automation of submitting this information into the inventory forum that was used to log the machines.
 
 ## Author
-
 👤 **Jordan &#34;Bramble&#34; Braham**
 
 * Twitter: [@ImTheBramble](https://twitter.com/ImTheBramble)
 * Github: [@Brambler](https://github.com/Brambler)
 
 ## 🤝 Contributing
-
 Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/Brambler/BrambleBot.js/issues).
 
 ## Show your support
-
-Give a ⭐️ if this project helped you!
-
-***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
+Give a ⭐️ if this project helped you! Also share it around!
