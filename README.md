@@ -10,7 +10,7 @@
 
 > These scripts were used for taking device inventory during my time as an intern at WVU. These scripts were written by me and were used to make the job easier and faster.
 
-### 🏠 [Homepage](https://github.com/Brambler)
+### 🏠 [Homepage](https://github.com/Brambler/IT-Device-Inventorying-Scripts)
 
 ## Prerequisites
 
