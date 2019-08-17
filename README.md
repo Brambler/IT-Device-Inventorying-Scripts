@@ -15,6 +15,7 @@
 ## Prerequisites
 
 - Windows 10
+- Windows 7
 
 ## Install
 
@@ -24,7 +25,7 @@
 
 ## Usage
 > This script was used to inventory the machine, to identify what building/room/department/..etc. 
-> - It also grabs the IP, Mac Address, Host Name. It also checks to see if the machine was on our AD system, as well if it had our Anti-Virus installed on the machine.
+> - It also grabs the IP, Mac Address, Host Name. It also checks to see if the machine was on our Active Directory, as well if it had our Anti-Virus installed on the machine.
 > Along side of the information grab part of the project
 > - It exports the data into CSV's for each machine and then combines the CSV's of the machines into one CSV file. This is in place for further down the road of if possible automation of submitting this information into the inventory forum that was used to log the machines.
 
@@ -33,9 +34,3 @@
 
 * Twitter: [@ImTheBramble](https://twitter.com/ImTheBramble)
 * Github: [@Brambler](https://github.com/Brambler)
-
-## 🤝 Contributing
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/Brambler/BrambleBot.js/issues).
-
-## Show your support
-Give a ⭐️ if this project helped you! Also share it around!

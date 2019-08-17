@@ -1,19 +1,12 @@
 !!TODO
-Ask if the device has a NETL ie. y)yes or n)no 
-    If yes promt for NETL Tag
-    If no set var to NA and go to next question
-Ask if the device has a OC ie. y)yes or n)no
-    If yes promt for OC Tag
-    If no set var to NA and go to next question
+//Ask if the device has a NETL ie. y)yes or n)no 
+//    If yes promt for NETL Tag
+//    If no set var to NA and go to next question
+//Ask if the device has a OC ie. y)yes or n)no
+//    If yes promt for OC Tag
+//    If no set var to NA and go to next question
 Ask for user Comments
-
-
-
-
-
-
-
-
+Figure out how to determine difference of Virtual Box MACAddress And PC MACAddress
 
 
 Get-WmiObject Win32_NetworkAdapterConfiguration

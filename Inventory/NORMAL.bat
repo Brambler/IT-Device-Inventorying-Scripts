@@ -6,24 +6,6 @@ IF NOT EXIST "%~dp0\DATA\Combine_PC_INFO.cmd" copy "%~dp0Combine_PC_INFO.cmd" "%
 IF EXIST "%~dp0DATA\Combine_PC_INFO.cmd" del "%~dp0Combine_PC_INFO.cmd"
 cls
 
-REM set variables
-set system=
-set manufacturer=
-set model=
-set serialnumber=
-set osname=
-set room=
-set dep=
-set device=
-set owner=
-set user=
-set ad=
-set sophos=
-set build=
-set domain=
-set netl=
-set oc=
-set netl=
 setlocal ENABLEDELAYEDEXPANSION
 set "volume=C:"
 
@@ -58,7 +40,7 @@ IF /I "%dep%"=="7" set dep=MINE
 IF /I "%dep%"=="8" set dep=MINDEXT
 IF /I "%dep%"=="9" set dep=ADM
 IF /I "%dep%"=="10" set dep=FRE
-IF /I "%dep%"=="11" set /p dep=Enter the department:
+IF /I "%dep%"=="11" set /p dep=Other:
 cls
 
 REM Get Device Type
@@ -68,14 +50,14 @@ set /P device=1)Desktop 2)Laptop 3)Printer 4)Other: %=%
 IF /I "%device%"=="1" set device=Desktop
 IF /I "%device%"=="2" set device=Laptop
 IF /I "%device%"=="3" set device=Printer
-IF /I "%device%"=="4" set /p oc=Enter the device type:
+IF /I "%device%"=="4" set /p device=Enter the device type:
 cls
 
 REM Get Owner
-set owner=%dep% Faculty
+set /p owner=Who is the device owner?
 
 REM Get User
-set user=%dep% Students
+set /p user=Who is the device user?
 
 REM Get OC Tag
 echo Does this Machine have an OC Tag?
@@ -93,13 +75,13 @@ cls
 
 REM Get AD INFO
 FOR /F "tokens=2 delims='='" %%A in ('wmic computersystem get domain /value') do SET domain=%%A
-IF "%domain%" == "wvu-ad.wvu.edu" SET ad=YES
-IF NOT "%domain%" == "wvu-ad.wvu.edu" SET ad=NO
+IF "%domain%" == "NAME.DOMAIN" SET ad=YES
+IF NOT "%domain%" == "NAME.DOMAIN" SET ad=NO
 
-REM Get Sophos
-IF EXIST "C:\Program Files (x86)\Sophos" set sophos=YES
-IF NOT EXIST "C:\Program Files (x86)\Sophos" set sophos=NO
-IF EXIST "C:\Program Files (x86)\Kaspersky Lab" set sophos=KASPERSKY
+REM Get AntiVirus
+IF EXIST "C:\Program Files (x86)\Sophos" set antivirus=YES
+IF NOT EXIST "C:\Program Files (x86)\Sophos" set antivirus=NO
+IF EXIST "C:\Program Files (x86)\Kaspersky Lab" set antivirus=KASPERSKY
 
 REM Get Computer Name
 FOR /F "tokens=2 delims='='" %%A in ('wmic OS Get csname /value') do SET system=%%A
@@ -151,15 +133,15 @@ echo Device User: %user%
 echo:
 echo Operating System: %osname%
 echo Device on AD: %ad%
-echo Sophos installed: %sophos%
+echo Antivirus installed: %antivirus%
 echo:
 echo OC TAG: %oc%
 echo NETL/OTHER TAG: %netl%
 
 REM Generate file
 SET file="%~dp0\DATA\%computername%.csv"
-echo "Building", "Room Number", "Department", "Device Type", "Computer Name", "Manufacturer", "Model", "Service-Tag", "Operating System", "IP Address", "Mac Address", "Device Owner", "Device User", "AD", "DOMAIN", "Sophos", "netl", "oc">> %file%
-echo %build:,=%, %room:,=%, %dep:,=%, %device:,=%, %system%, %manufacturer:,=%, %model%, %serialnumber%, %osname%, %ip:{=%, %mac::=%, %owner:,=%, %user:,=%, %ad:,=%, %domain%, %sophos% , %netl%, %oc% >> %file%
+echo "Building", "Room Number", "Department", "Device Type", "Computer Name", "Manufacturer", "Model", "Service-Tag", "Operating System", "IP Address", "Mac Address", "Device Owner", "Device User", "AD", "DOMAIN", "Antivirus", "netl", "oc">> %file%
+echo %build:,=%, %room:,=%, %dep:,=%, %device:,=%, %system%, %manufacturer:,=%, %model%, %serialnumber%, %osname%, %ip:{=%, %mac::=%, %owner:,=%, %user:,=%, %ad:,=%, %domain%, %antivirus% , %netl%, %oc% >> %file%
 
 call %~dp0\DATA\Combine_PC_INFO.cmd
 

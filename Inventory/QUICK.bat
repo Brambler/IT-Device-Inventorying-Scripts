@@ -6,24 +6,6 @@ IF NOT EXIST "%~dp0\DATA\Combine_PC_INFO.cmd" copy "%~dp0Combine_PC_INFO.cmd" "%
 IF EXIST "%~dp0DATA\Combine_PC_INFO.cmd" del "%~dp0Combine_PC_INFO.cmd"
 cls
 
-REM set variables
-set system=
-set manufacturer=
-set model=
-set serialnumber=
-set osname=
-set room=
-set dep=
-set device=
-set owner=
-set user=
-set ad=
-set sophos=
-set build=
-set domain=
-set netl=
-set oc=
-set netl=
 setlocal ENABLEDELAYEDEXPANSION
 set "volume=C:"
 
@@ -85,13 +67,13 @@ cls
 
 REM Get AD INFO
 FOR /F "tokens=2 delims='='" %%A in ('wmic computersystem get domain /value') do SET domain=%%A
-IF "%domain%" == "wvu-ad.wvu.edu" SET ad=YES
-IF NOT "%domain%" == "wvu-ad.wvu.edu" SET ad=NO
+IF "%domain%" == "NAME.DOMAIN" SET ad=YES
+IF NOT "%domain%" == "NAME.DOMAIN" SET ad=NO
 
-REM Get Sophos
-IF EXIST "C:\Program Files (x86)\Sophos" set sophos=YES
-IF NOT EXIST "C:\Program Files (x86)\Sophos" set sophos=NO
-IF EXIST "C:\Program Files (x86)\Kaspersky Lab" set sophos=KASPERSKY
+REM Get AntiVirus
+IF EXIST "C:\Program Files (x86)\Sophos" set antivirus=YES
+IF NOT EXIST "C:\Program Files (x86)\Sophos" set antivirus=NO
+IF EXIST "C:\Program Files (x86)\Kaspersky Lab" set antivirus=KASPERSKY
 
 REM Get Computer Name
 FOR /F "tokens=2 delims='='" %%A in ('wmic OS Get csname /value') do SET system=%%A
@@ -124,36 +106,13 @@ FOR /F "usebackq skip=2 tokens=1-4 delims=," %%a in (
     ) do set mac=%%c 
 
 cls
-echo:
-echo Computer Name: %system%
-echo Service-Tag: %serialnumber%
-echo IP Address: %ip:{=%
-echo Mac Address: %mac%
-echo:
-echo Building: %build%
-echo Room Number: %room%
-echo Department: %dep%
-echo:
-echo Device Type: %device%
-echo Manufacturer: %manufacturer%
-echo Model: %model%
-echo:
-echo Device Owner: %owner%
-echo Device User: %user%
-echo:
-echo Operating System: %osname%
-echo Device on AD: %ad%
-echo Sophos installed: %sophos%
-echo:
-echo OC TAG: %oc%
-echo NETL/OTHER TAG: %netl%
 
 REM Generate file
 SET file="%~dp0\DATA\%computername%.csv"
-echo "Building", "Room Number", "Department", "Device Type", "Computer Name", "Manufacturer", "Model", "Service-Tag", "Operating System", "IP Address", "Mac Address", "Device Owner", "Device User", "AD", "DOMAIN", "Sophos", "netl", "oc">> %file%
-echo %build:,=%, %room:,=%, %dep:,=%, %device:,=%, %system%, %manufacturer:,=%, %model%, %serialnumber%, %osname%, %ip:{=%, %mac::=%, %owner:,=%, %user:,=%, %ad:,=%, %domain%, %sophos% , %netl%, %oc% >> %file%
+echo "Building", "Room Number", "Department", "Device Type", "Computer Name", "Manufacturer", "Model", "Service-Tag", "Operating System", "IP Address", "Mac Address", "Device Owner", "Device User", "AD", "DOMAIN", "Antivirus", "netl", "oc">> %file%
+echo %build:,=%, %room:,=%, %dep:,=%, %device:,=%, %system%, %manufacturer:,=%, %model%, %serialnumber%, %osname%, %ip:{=%, %mac::=%, %owner:,=%, %user:,=%, %ad:,=%, %domain%, %antivirus% , %netl%, %oc% >> %file%
 
-call \Inventory\DATA\Combine_PC_INFO.cmd
+call %~dp0\DATA\Combine_PC_INFO.cmd
 
 REM request user to push any key to continue
 pause
