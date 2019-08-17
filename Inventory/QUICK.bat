@@ -67,8 +67,8 @@ cls
 
 REM Get AD INFO
 FOR /F "tokens=2 delims='='" %%A in ('wmic computersystem get domain /value') do SET domain=%%A
-IF "%domain%" == "NAME.DOMAIN" SET ad=YES
-IF NOT "%domain%" == "NAME.DOMAIN" SET ad=NO
+IF "%domain%" == "wvu-ad" SET ad=YES
+IF NOT "%domain%" == "wvu-ad" SET ad=NO
 
 REM Get AntiVirus
 IF EXIST "C:\Program Files (x86)\Sophos" set antivirus=YES
