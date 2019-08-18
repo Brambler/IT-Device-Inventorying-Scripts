@@ -1,8 +1,12 @@
 <h1 align="center">IT Device Inventorying Scripts 👋</h1>
 <p>
-  <a href="https://github.com/kefranabg/readme-md-generator/graphs/commit-activity">
+  <a>
     <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" target="_blank" />
   </a>
+  <a>
+    <img alt="GitHub All Releases" src="https://img.shields.io/github/downloads/Brambler/IT-Device-Inventorying-Scripts/total">
+  </a>
+  
   <a href="https://twitter.com/ImTheBramble">
     <img alt="Twitter: ImTheBramble" src="https://img.shields.io/twitter/follow/ImTheBramble.svg?style=social" target="_blank" />
   </a>
